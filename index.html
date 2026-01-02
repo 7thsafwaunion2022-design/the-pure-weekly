@@ -1,0 +1,1251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>THE PURE WEEKLY</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #1a237e;
+            --secondary: #283593;
+            --accent: #3949ab;
+            --gold: #ffd700;
+            --light: #f5f5f7;
+            --dark: #0d0d2b;
+            --text: #333333;
+            --transition: all 0.3s ease;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            color: var(--text);
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-height: 100vh;
+            position: relative;
+            background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+        }
+
+        /* Animated Background */
+        #animated-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            overflow: hidden;
+            opacity: 0.3;
+        }
+
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(26, 35, 126, 0.1);
+            animation: float linear infinite;
+        }
+
+        .floating-element:nth-child(1) {
+            width: 100px;
+            height: 100px;
+            top: 10%;
+            left: 5%;
+            animation-duration: 25s;
+        }
+
+        .floating-element:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            top: 60%;
+            right: 10%;
+            animation-duration: 30s;
+            animation-delay: -5s;
+        }
+
+        .floating-element:nth-child(3) {
+            width: 80px;
+            height: 80px;
+            bottom: 20%;
+            left: 15%;
+            animation-duration: 22s;
+            animation-delay: -10s;
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            25% {
+                transform: translateY(-20px) rotate(90deg);
+            }
+            50% {
+                transform: translateY(0) rotate(180deg);
+            }
+            75% {
+                transform: translateY(20px) rotate(270deg);
+            }
+        }
+
+        /* Subtle Pattern */
+        .pattern-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%231a237e' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Header Styles */
+        .main-header {
+            background: rgba(26, 35, 126, 0.95);
+            backdrop-filter: blur(10px);
+            color: white;
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+            border-bottom: 2px solid var(--gold);
+        }
+
+        .header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 10px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 900;
+            color: var(--gold);
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            letter-spacing: 1px;
+        }
+
+        .tagline {
+            font-size: 0.9rem;
+            font-style: italic;
+            opacity: 0.9;
+            border-left: 2px solid var(--gold);
+            padding-left: 10px;
+        }
+
+        .event-banner {
+            background: rgba(255, 215, 0, 0.15);
+            border: 2px solid var(--gold);
+            border-radius: 30px;
+            padding: 8px 20px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* Navigation */
+        .main-nav {
+            padding-top: 15px;
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+            justify-content: center;
+            gap: 40px;
+        }
+
+        .nav-menu a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            padding: 8px 0;
+            position: relative;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-menu a:hover {
+            color: var(--gold);
+        }
+
+        .nav-menu a.active {
+            color: var(--gold);
+        }
+
+        .nav-menu a.active::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background-color: var(--gold);
+            border-radius: 2px;
+        }
+
+        /* Page Content */
+        .page-content {
+            display: none;
+            padding: 60px 0;
+            min-height: 70vh;
+            animation: pageFadeIn 0.5s ease-out;
+        }
+
+        @keyframes pageFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .page-content.active {
+            display: block;
+        }
+
+        /* Hero Section for Home */
+        .hero {
+            background: linear-gradient(rgba(26, 35, 126, 0.9), rgba(40, 53, 147, 0.9));
+            color: white;
+            padding: 80px 0;
+            text-align: center;
+            margin-bottom: 60px;
+            border-radius: 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffd700' fill-opacity='0.05' fill-rule='evenodd'/%3E%3C/svg%3E");
+            opacity: 0.3;
+        }
+
+        .hero-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            margin-bottom: 20px;
+            color: var(--gold);
+            position: relative;
+        }
+
+        .hero-subtitle {
+            font-size: 1.4rem;
+            max-width: 800px;
+            margin: 0 auto;
+            opacity: 0.95;
+            line-height: 1.8;
+        }
+
+        .hero-description {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            border-radius: 15px;
+            padding: 30px;
+            max-width: 900px;
+            margin: 40px auto 0;
+            border: 1px solid rgba(255, 215, 0, 0.2);
+        }
+
+        .designer-credit {
+            font-style: italic;
+            margin-top: 20px;
+            padding-top: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        .designer-credit span {
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        /* Section Styles */
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--primary);
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background-color: var(--gold);
+            border-radius: 2px;
+        }
+
+        /* Articles Grid */
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+
+        .article-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .article-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+        }
+
+        .article-badge {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            background: var(--gold);
+            color: var(--primary);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            z-index: 2;
+        }
+
+        .article-image {
+            height: 200px;
+            width: 100%;
+            object-fit: cover;
+        }
+
+        .article-content {
+            padding: 25px;
+        }
+
+        .article-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--primary);
+            line-height: 1.4;
+        }
+
+        .article-excerpt {
+            color: #666;
+            margin-bottom: 20px;
+            line-height: 1.7;
+        }
+
+        .article-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-top: 15px;
+            border-top: 1px solid #eee;
+            font-size: 0.9rem;
+            color: #777;
+        }
+
+        .article-views, .article-date {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .article-views i {
+            color: var(--accent);
+        }
+
+        .article-date i {
+            color: var(--primary);
+        }
+
+        .counter {
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        /* Page Specific Styles */
+        .page-header {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+            margin-bottom: 60px;
+            border-radius: 20px;
+        }
+
+        .page-header h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: var(--gold);
+        }
+
+        .page-header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* About Page Styles */
+        .about-content {
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            margin-top: 30px;
+        }
+
+        .about-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        .stat-value {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            opacity: 0.9;
+        }
+
+        /* Events Page Styles */
+        .events-timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .event-item {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--gold);
+        }
+
+        /* Footer */
+        .main-footer {
+            background: var(--dark);
+            color: white;
+            padding: 60px 0 30px;
+            margin-top: 80px;
+        }
+
+        .footer-content {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--gold);
+            margin-bottom: 20px;
+        }
+
+        .footer-description {
+            opacity: 0.8;
+            line-height: 1.8;
+            margin-bottom: 25px;
+        }
+
+        .footer-links h3 {
+            font-size: 1.2rem;
+            margin-bottom: 25px;
+            color: var(--gold);
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .footer-links h3::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 3px;
+            background-color: var(--accent);
+        }
+
+        .footer-links ul {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 12px;
+        }
+
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: var(--transition);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .footer-links a:hover {
+            color: var(--gold);
+            padding-left: 5px;
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            opacity: 0.7;
+            font-size: 0.9rem;
+        }
+
+        .copyright span {
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 992px) {
+            .nav-menu {
+                gap: 25px;
+            }
+            
+            .hero-title {
+                font-size: 2.8rem;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .header-top {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+            
+            .hero-title {
+                font-size: 2.2rem;
+            }
+            
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .nav-menu {
+                flex-wrap: wrap;
+                gap: 15px;
+            }
+            
+            .section-title {
+                font-size: 2rem;
+            }
+            
+            .articles-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .page-header h1 {
+                font-size: 2rem;
+            }
+            
+            .about-content {
+                padding: 30px 20px;
+            }
+            
+            .footer-content {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Animated Background -->
+    <div id="animated-bg">
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+        <div class="floating-element"></div>
+    </div>
+    <div class="pattern-overlay"></div>
+
+    <!-- Header -->
+    <header class="main-header">
+        <div class="container">
+            <div class="header-top">
+                <div class="logo-container">
+                    <div class="logo">THE PURE WEEKLY</div>
+                    <div class="tagline">Academic Excellence Through Literature</div>
+                </div>
+                <div class="event-banner">
+                    <i class="fas fa-star"></i>
+                    The ongoing Event "THE POET"
+                </div>
+            </div>
+            
+            <nav class="main-nav">
+                <ul class="nav-menu">
+                    <li><a href="#" class="nav-link active" data-page="home"><i class="fas fa-home"></i> Home</a></li>
+                    <li><a href="#" class="nav-link" data-page="poems"><i class="fas fa-feather-alt"></i> Poems</a></li>
+                    <li><a href="#" class="nav-link" data-page="stories"><i class="fas fa-book"></i> Short Stories</a></li>
+                    <li><a href="#" class="nav-link" data-page="essays"><i class="fas fa-edit"></i> Essays</a></li>
+                    <li><a href="#" class="nav-link" data-page="letters"><i class="fas fa-envelope"></i> Letters</a></li>
+                    <li><a href="#" class="nav-link" data-page="events"><i class="fas fa-calendar-alt"></i> Events</a></li>
+                    <li><a href="#" class="nav-link" data-page="about"><i class="fas fa-info-circle"></i> About Us</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Page Contents -->
+    <main>
+        <!-- Home Page -->
+        <section id="home" class="page-content active">
+            <div class="container">
+                <div class="hero">
+                    <h1 class="hero-title">THE PURE WEEKLY</h1>
+                    <p class="hero-subtitle">A prestigious platform for academic publications, literary works, and intellectual discourse from Noorul Hidaya Islamic Academy.</p>
+                    
+                    <div class="hero-description">
+                        <p>Welcome to The Pure Weekly, a digital publication platform dedicated to showcasing literary and academic talents. Our collection features carefully curated poems, short stories, essays, and letters from talented writers.</p>
+                        
+                        <div class="designer-credit">
+                            Designed by the <span>7th Batch of Noorul Hidaya Islamic Academy</span> for academic publications
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Recent Publications -->
+                <h2 class="section-title">Recent Publications</h2>
+                <div class="articles-grid" id="home-articles">
+                    <!-- Home articles will be loaded dynamically -->
+                </div>
+
+                <!-- Statistics -->
+                <div class="about-stats">
+                    <div class="stat-card">
+                        <div class="stat-value" id="total-articles">89</div>
+                        <div class="stat-label">Total Articles</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="total-views">12,458</div>
+                        <div class="stat-label">Total Views</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="total-authors">45</div>
+                        <div class="stat-label">Authors</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value" id="platform-days">150</div>
+                        <div class="stat-label">Days Active</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Poems Page -->
+        <section id="poems" class="page-content">
+            <div class="container">
+                <div class="page-header">
+                    <h1><i class="fas fa-feather-alt"></i> Poems Collection</h1>
+                    <p>Expressive verses and poetic compositions that capture emotions, thoughts, and experiences through beautiful language and rhythm.</p>
+                </div>
+                
+                <div class="articles-grid" id="poems-articles">
+                    <!-- Poems articles will be loaded dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Stories Page -->
+        <section id="stories" class="page-content">
+            <div class="container">
+                <div class="page-header">
+                    <h1><i class="fas fa-book"></i> Short Stories Collection</h1>
+                    <p>Creative narratives and fictional tales that transport readers to different worlds, exploring human experiences and imagination.</p>
+                </div>
+                
+                <div class="articles-grid" id="stories-articles">
+                    <!-- Stories articles will be loaded dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Essays Page -->
+        <section id="essays" class="page-content">
+            <div class="container">
+                <div class="page-header">
+                    <h1><i class="fas fa-edit"></i> Essays Collection</h1>
+                    <p>Analytical, argumentative, and reflective writings that explore ideas, concepts, and perspectives with intellectual depth.</p>
+                </div>
+                
+                <div class="articles-grid" id="essays-articles">
+                    <!-- Essays articles will be loaded dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Letters Page -->
+        <section id="letters" class="page-content">
+            <div class="container">
+                <div class="page-header">
+                    <h1><i class="fas fa-envelope"></i> Letters Collection</h1>
+                    <p>Personal correspondence, open letters, and epistolary works that share thoughts, feelings, and messages in intimate formats.</p>
+                </div>
+                
+                <div class="articles-grid" id="letters-articles">
+                    <!-- Letters articles will be loaded dynamically -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Events Page -->
+        <section id="events" class="page-content">
+            <div class="container">
+                <div class="page-header">
+                    <h1><i class="fas fa-calendar-alt"></i> Events</h1>
+                    <p>Upcoming literary events, competitions, and workshops organized by The Pure Weekly and Noorul Hidaya Islamic Academy.</p>
+                </div>
+                
+                <div class="events-timeline">
+                    <div class="event-item">
+                        <h3 style="color: var(--primary); margin-bottom: 10px;">THE POET - Annual Poetry Competition</h3>
+                        <p style="margin-bottom: 15px; color: #666;">Join our annual poetry competition where talented writers showcase their poetic skills. Cash prizes and publication opportunities await the winners.</p>
+                        <div class="article-meta">
+                            <div class="article-date">
+                                <i class="fas fa-calendar"></i>
+                                <span>Date: March 15, 2024</span>
+                            </div>
+                            <div class="article-views">
+                                <i class="fas fa-users"></i>
+                                <span>Participants: <span class="counter">85</span></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="event-item">
+                        <h3 style="color: var(--primary); margin-bottom: 10px;">Creative Writing Workshop</h3>
+                        <p style="margin-bottom: 15px; color: #666;">Learn the art of creative writing from experienced authors. Perfect for beginners and intermediate writers looking to improve their skills.</p>
+                        <div class="article-meta">
+                            <div class="article-date">
+                                <i class="fas fa-calendar"></i>
+                                <span>Date: April 5, 2024</span>
+                            </div>
+                            <div class="article-views">
+                                <i class="fas fa-users"></i>
+                                <span>Registered: <span class="counter">42</span></span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="event-item">
+                        <h3 style="color: var(--primary); margin-bottom: 10px;">Literary Symposium</h3>
+                        <p style="margin-bottom: 15px; color: #666;">A gathering of writers, poets, and literary enthusiasts to discuss contemporary literature and share creative works.</p>
+                        <div class="article-meta">
+                            <div class="article-date">
+                                <i class="fas fa-calendar"></i>
+                                <span>Date: May 20, 2024</span>
+                            </div>
+                            <div class="article-views">
+                                <i class="fas fa-users"></i>
+                                <span>Expected: <span class="counter">120</span></span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Page -->
+        <section id="about" class="page-content">
+            <div class="container">
+                <div class="page-header">
+                    <h1><i class="fas fa-info-circle"></i> About The Pure Weekly</h1>
+                    <p>Learn about our mission, vision, and the team behind this academic publication platform.</p>
+                </div>
+                
+                <div class="about-content">
+                    <h2 style="color: var(--primary); margin-bottom: 20px;">Our Mission</h2>
+                    <p style="margin-bottom: 25px; line-height: 1.8;">The Pure Weekly is an academic publication platform established by the 7th Batch of Noorul Hidaya Islamic Academy. Our mission is to provide a digital space for students to showcase their literary talents, share academic insights, and engage in intellectual discourse. We believe in nurturing creativity and academic excellence through publication opportunities.</p>
+                    
+                    <h2 style="color: var(--primary); margin-bottom: 20px;">Platform Features</h2>
+                    <ul style="margin-bottom: 25px; padding-left: 20px; line-height: 1.8;">
+                        <li>Automatic view counting for each publication</li>
+                        <li>Days-ago calculation showing publication age</li>
+                        <li>Category-based organization (Poems, Stories, Essays, Letters)</li>
+                        <li>Regular literary events and competitions</li>
+                        <li>Academic integrity and quality review process</li>
+                    </ul>
+                    
+                    <h2 style="color: var(--primary); margin-bottom: 20px;">Design & Development</h2>
+                    <p style="margin-bottom: 25px; line-height: 1.8;">This platform was designed and developed by the 7th Batch of Noorul Hidaya Islamic Academy as an academic project. The design focuses on user experience, readability, and showcasing literary works in their best light. The automatic counting systems are implemented to provide authors with immediate feedback on their work's reception.</p>
+                    
+                    <div class="designer-credit" style="background: rgba(26, 35, 126, 0.05); padding: 20px; border-radius: 10px; margin-top: 30px;">
+                        <strong>Platform Statistics (Auto-Calculated):</strong><br>
+                        - Total Publications: <span id="about-articles">89</span><br>
+                        - Total Views: <span id="about-views">12,458</span><br>
+                        - Active Authors: <span id="about-authors">45</span><br>
+                        - Platform Age: <span id="about-days">150</span> days<br>
+                        - Publication Categories: <span>4</span><br>
+                        - Literary Events: <span>3</span> active
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="main-footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-about">
+                    <div class="footer-logo">THE PURE WEEKLY</div>
+                    <p class="footer-description">
+                        An academic publication platform by Noorul Hidaya Islamic Academy, dedicated to nurturing literary talent and promoting intellectual discourse among students.
+                    </p>
+                    <div class="designer-credit" style="color: #ddd; border-top-color: rgba(255,255,255,0.2); margin-top: 15px;">
+                        Designed by the <span>7th Batch of Noorul Hidaya Islamic Academy</span>
+                    </div>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Quick Links</h3>
+                    <ul>
+                        <li><a href="#" data-page="home"><i class="fas fa-chevron-right"></i> Home</a></li>
+                        <li><a href="#" data-page="poems"><i class="fas fa-chevron-right"></i> Poems</a></li>
+                        <li><a href="#" data-page="stories"><i class="fas fa-chevron-right"></i> Short Stories</a></li>
+                        <li><a href="#" data-page="essays"><i class="fas fa-chevron-right"></i> Essays</a></li>
+                        <li><a href="#" data-page="letters"><i class="fas fa-chevron-right"></i> Letters</a></li>
+                    </ul>
+                </div>
+                
+                <div class="footer-links">
+                    <h3>Contact Information</h3>
+                    <ul>
+                        <li><a href="#"><i class="fas fa-map-marker-alt"></i> Noorul Hidaya Islamic Academy</a></li>
+                        <li><a href="#"><i class="fas fa-envelope"></i> contact@pureweekly.com</a></li>
+                        <li><a href="#"><i class="fas fa-phone"></i> +123 456 7890</a></li>
+                        <li><a href="#" data-page="events"><i class="fas fa-calendar"></i> View Events</a></li>
+                        <li><a href="#" data-page="about"><i class="fas fa-info-circle"></i> About Us</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                &copy; <span id="current-year">2024</span> THE PURE WEEKLY. All rights reserved. 
+                <br>Published by Noorul Hidaya Islamic Academy, 7th Batch.
+                <br>All view counts and days-ago calculations are automatic.
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Comprehensive articles data for each page
+        const articlesData = {
+            home: [
+                {
+                    id: 1,
+                    title: "The Echoes of Silence",
+                    excerpt: "A profound exploration of solitude and self-discovery through poetic verses that capture the essence of inner peace.",
+                    category: "Poem",
+                    views: 1245,
+                    date: "2024-01-15",
+                    image: "https://images.unsplash.com/photo-1519681393784-d120267933ba?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+                    author: "Aisha Rahman"
+                },
+                {
+                    id: 2,
+                    title: "Whispers of Dawn",
+                    excerpt: "A short story that follows a young student's journey of enlightenment during the early morning prayers.",
+                    category: "Short Story",
+                    views: 892,
+                    date: "2024-01-10",
+                    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+                    author: "Mohammed Ali"
+                },
+                {
+                    id: 3,
+                    title: "The Digital Renaissance",
+                    excerpt: "An analytical essay examining the impact of technology on modern education and traditional learning methods.",
+                    category: "Essay",
+                    views: 1567,
+                    date: "2024-01-05",
+                    image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+                    author: "Fatima Khan"
+                }
+            ],
+            poems: [
+                {
+                    id: 4,
+                    title: "Monsoon Melodies",
+                    excerpt: "Poetic verses capturing the rhythm, essence, and emotional depth of the monsoon season.",
+                    category: "Poem",
+                    views: 945,
+                    date: "2023-12-20",
+                    image: "https://images.unsplash.com/photo-1532094349884-543bc11b234d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+                    author: "Imran Sheikh"
+                },
+                {
+                    id: 5,
+                    title: "Starlight Sonnets",
+                    excerpt: "A collection of sonnets dedicated to the celestial beauty of the night sky and distant stars.",
+                    category: "Poem",
+                    views: 876,
+                    date: "2023-12-15",
+                    image: "https://images.unsplash.com/photo-1446776653964-20c1d3a81b06?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+                    author: "Layla Hassan"
+                },
+                {
+                    id: 6,
+                    title: "Desert Whispers",
+                    excerpt: "Poetic expressions of the desert's timeless beauty and spiritual significance.",
+                    category: "Poem",
+                    views: 654,
+                    date: "2023-12-10",
+                    image: "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+                    author: "Omar Farooq"
+                },
+                {
+                    id: 7,
+                    title: "Ocean's Lullaby",
+                    excerpt: "Verses that capture the soothing rhythm and eternal mystery of the ocean waves.",
+                    category: "Poem",
+                    views: 732,
+                    date: "2023-12-05",
+                    image: "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+                    author: "Sarah Ahmed"
+                }
+            ],
+            stories: [
+                {
+                    id: 8,
+                    title: "The Last Manuscript",
+                    excerpt: "A tale of an ancient manuscript that holds secrets of a forgotten civilization.",
+                    category: "Short Story",
+                    views: 1123,
+                    date: "2023-12-05",
+                    image: "https://images.unsplash.com/photo-1541963463532-d68292c34b19?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+                    author: "Zainab Malik"
+                },
+                {
+                    id: 9,
+                    title: "Midnight in Cordoba",
+                    excerpt: "Historical fiction set in the golden age of Islamic Spain.",
+                    category: "Short Story",
+                    views: 987,
+                    date: "2023-11-28",
+                    image: "https://images.unsplash.com/photo-1513475382585-d06e58bcb0e0?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+                    author: "Yusuf Abdullah"
+                },
+                {
+                    id: 10,
+                    title: "The Weaver's Daughter",
+                    excerpt: "A story about tradition, change, and finding one's own path in life.",
+                    category: "Short Story",
+                    views: 845,
+                    date: "2023-11-20",
+                    image: "https://images.unsplash.com/photo-1483058712412-4245e9b90334?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+                    author: "Nadia Khan"
+                }
+            ],
+            essays: [
+                {
+                    id: 11,
+                    title: "The Ethics of Artificial Intelligence",
+                    excerpt: "A philosophical examination of AI ethics in contemporary society.",
+                    category: "Essay",
+                    views: 1342,
+                    date: "2023-11-20",
+                    image: "https://images.unsplash.com/photo-1677442136019-21780ecad995?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+                    author: "Hassan Raza"
+                },
+                {
+                    id: 12,
+                    title: "Islamic Architecture: A Timeless Legacy",
+                    excerpt: "Exploring the principles and beauty of traditional Islamic architecture.",
+                    category: "Essay",
+                    views: 1109,
+                    date: "2023-11-15",
+                    image: "https://images.unsplash.com/photo-1580137189272-c9379f8864fd?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+                    author: "Amina Syed"
+                },
+                {
+                    id: 13,
+                    title: "The Future of Education",
+                    excerpt: "Analyzing how education must evolve to meet the challenges of the 21st century.",
+                    category: "Essay",
+                    views: 1256,
+                    date: "2023-11-10",
+                    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+                    author: "Bilal Ahmed"
+                }
+            ],
+            letters: [
+                {
+                    id: 14,
+                    title: "To My Future Self",
+                    excerpt: "A letter filled with hopes, dreams, and aspirations for the future.",
+                    category: "Letters",
+                    views: 567,
+                    date: "2023-11-10",
+                    image: "https://images.unsplash.com/photo-1512486130939-2c4f79935e4f?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+                    author: "Bilal Ahmed"
+                },
+                {
+                    id: 15,
+                    title: "Letters from the Heart",
+                    excerpt: "Personal correspondence exploring themes of love, faith, and family.",
+                    category: "Letters",
+                    views: 432,
+                    date: "2023-11-05",
+                    image: "https://images.unsplash.com/photo-1568430462989-44163eb1752f?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+                    author: "Nadia Khan"
+                },
+                {
+                    id: 16,
+                    title: "Open Letter to Students",
+                    excerpt: "Guidance and advice for students navigating academic life and personal growth.",
+                    category: "Letters",
+                    views: 689,
+                    date: "2023-10-30",
+                    image: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80",
+                    author: "Dr. Ahmed Raza"
+                }
+            ]
+        };
+
+        // Platform statistics
+        const platformStats = {
+            startDate: new Date('2023-09-01'),
+            totalArticles: 89,
+            totalViews: 12458,
+            totalAuthors: 45
+        };
+
+        // Generate article card HTML
+        function generateArticleCard(article) {
+            const daysAgo = calculateDaysAgo(article.date);
+            const views = formatNumber(article.views);
+            
+            return `
+                <div class="article-card" data-id="${article.id}">
+                    <div class="article-badge">${article.category}</div>
+                    <img src="${article.image}" alt="${article.title}" class="article-image">
+                    <div class="article-content">
+                        <h3 class="article-title">${article.title}</h3>
+                        <p class="article-excerpt">${article.excerpt}</p>
+                        <div class="article-meta">
+                            <div class="article-views">
+                                <i class="fas fa-eye"></i>
+                                <span>Views: <span class="counter">${views}</span></span>
+                            </div>
+                            <div class="article-date">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>Published: <span class="counter">${daysAgo}</span> days ago</span>
+                            </div>
+                        </div>
+                        <div style="margin-top: 10px; font-size: 0.8rem; color: #666;">
+                            <i class="fas fa-user"></i> By ${article.author}
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // Calculate days since publication
+        function calculateDaysAgo(dateString) {
+            const publishDate = new Date(dateString);
+            const currentDate = new Date();
+            const diffTime = Math.abs(currentDate - publishDate);
+            return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        }
+
+        // Calculate platform days
+        function calculatePlatformDays() {
+            const currentDate = new Date();
+            const diffTime = Math.abs(currentDate - platformStats.startDate);
+            return Math.ceil(diffTime / (1000 * 60 * 60 * 24));
+        }
+
+        // Format numbers with commas
+        function formatNumber(num) {
+            return num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+        }
+
+        // Load articles for a specific page
+        function loadArticles(page) {
+            const container = document.getElementById(`${page}-articles`);
+            if (!container || !articlesData[page]) return;
+            
+            container.innerHTML = articlesData[page]
+                .map(article => generateArticleCard(article))
+                .join('');
+        }
+
+        // Update platform statistics display
+        function updateStatistics() {
+            const platformDays = calculatePlatformDays();
+            
+            // Update home page stats
+            document.getElementById('total-articles').textContent = platformStats.totalArticles;
+            document.getElementById('total-views').textContent = formatNumber(platformStats.totalViews);
+            document.getElementById('total-authors').textContent = platformStats.totalAuthors;
+            document.getElementById('platform-days').textContent = platformDays;
+            
+            // Update about page stats
+            document.getElementById('about-articles').textContent = platformStats.totalArticles;
+            document.getElementById('about-views').textContent = formatNumber(platformStats.totalViews);
+            document.getElementById('about-authors').textContent = platformStats.totalAuthors;
+            document.getElementById('about-days').textContent = platformDays;
+        }
+
+        // Setup page navigation
+        function setupNavigation() {
+            const navLinks = document.querySelectorAll('.nav-link, .footer-links a[data-page]');
+            const pageContents = document.querySelectorAll('.page-content');
+            
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    
+                    const targetPage = link.getAttribute('data-page');
+                    if (!targetPage) return;
+                    
+                    // Update active navigation link
+                    navLinks.forEach(navLink => {
+                        navLink.classList.remove('active');
+                        if (navLink.getAttribute('data-page') === targetPage) {
+                            navLink.classList.add('active');
+                        }
+                    });
+                    
+                    // Show target page, hide others
+                    pageContents.forEach(page => {
+                        page.classList.remove('active');
+                        if (page.id === targetPage) {
+                            page.classList.add('active');
+                            loadArticles(targetPage);
+                            
+                            // Scroll to top of page
+                            window.scrollTo({ top: 0, behavior: 'smooth' });
+                        }
+                    });
+                });
+            });
+        }
+
+        // Initialize animated background
+        function initAnimatedBackground() {
+            const bg = document.getElementById('animated-bg');
+            
+            // Add more floating elements
+            for (let i = 0; i < 6; i++) {
+                const element = document.createElement('div');
+                element.classList.add('floating-element');
+                
+                const size = Math.random() * 80 + 40;
+                const top = Math.random() * 100;
+                const left = Math.random() * 100;
+                const duration = Math.random() * 30 + 20;
+                const delay = Math.random() * 15;
+                
+                element.style.width = `${size}px`;
+                element.style.height = `${size}px`;
+                element.style.top = `${top}%`;
+                element.style.left = `${left}%`;
+                element.style.animationDuration = `${duration}s`;
+                element.style.animationDelay = `${delay}s`;
+                element.style.background = `rgba(26, 35, 126, ${Math.random() * 0.1 + 0.05})`;
+                
+                bg.appendChild(element);
+            }
+        }
+
+        // Initialize the website
+        function initWebsite() {
+            initAnimatedBackground();
+            setupNavigation();
+            
+            // Load initial content for all pages
+            loadArticles('home');
+            loadArticles('poems');
+            loadArticles('stories');
+            loadArticles('essays');
+            loadArticles('letters');
+            
+            // Update statistics
+            updateStatistics();
+            
+            // Set current year
+            document.getElementById('current-year').textContent = new Date().getFullYear();
+        }
+
+        // Start when DOM is loaded
+        document.addEventListener('DOMContentLoaded', initWebsite);
+    </script>
+</body>
+</html>
